@@ -12,6 +12,7 @@ Il est important d'avoir un nom qu'il fasse une lettre ou plusieurs mots pour qu
 ##### `01.mp4` on fait un petit effort de nommage svp<br>
 #### Si le numéro est entre parenthèse il ne sera pas pris en compte : `Nom de la serie (01).mkv` => pas bon<br>
 Il faudra aussi que tout les fichiers utilisé porte le même nom, à l'exception du numéro qui change, un warning sera affiché si ça n'est pas le cas.
+N'hésitez pas à nommez différemment chacun des éléments qui constitueront le mkv final.
 
 ### Requirements
 
@@ -19,13 +20,9 @@ Python 3.4+
 `pip install colorama`
 
 ### Bible d'un nommage propre
-
-Donner un nom. <br>
-Les dates sont entre parenthèse juste après le nom de la série.<br>
-Si on décide de mettre des points à la place des espaces on s'y tient pour tout le nom du fichier.<br>
-Préciser les codecs utilisés est apprécié, importance sur le codec vidéo que sur l'audio car ce dernier est souvent moins problématique.<br>
-Aller du plus important au moins important, VOSTFR / VF > caractéristique vidéo > caractéristique audio.<br>
-
-### For all of my english friends
-
-Just use google translate :), the warnings are in english btw I'm not that big of a ~~monster~~ baguette
+Liste non exhaustive des éléments importants à prendre en compte lors du nommage, ceci n'est que mon avis :
+- Donner un nom, pas de 01.mkv, 02.mkv etc on est un minimum précis. <br>
+- Si on décide de mettre des points à la place des espaces on s'y tient pour tout le nom du fichier.<br>
+- Préciser les codecs utilisés est apprécié, importance particulière portée sur le codec vidéo que sur l'audio car ce dernier étant souvent moins problématique.<br>
+- Les dates sont entre parenthèse juste après le nom de la série.<br>
+- Aller du plus important au moins important, VOSTFR / VF > caractéristique vidéo > caractéristique audio.<br>
