@@ -1,5 +1,7 @@
 # Yolobatch
 
+[French README](https://github.com/Hqndler/Yolobatch/blob/main/README.fr.md)
+
 Will create the .bat for you. Copy the command line MkvToolNix and paste it in the script, it will do the rest.
 
 ### How yo use it ?
