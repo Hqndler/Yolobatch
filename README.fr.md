@@ -6,12 +6,12 @@ Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et le co
 
 Le script se base sur le nommage, sur les noms des fichiers, il est donc important de ne pas les nommer n'importe comment. <br>
 Deux nommages sont pris en compte: 
-- Nom de la serie S01E01.mp4
-- Nom de la serie 01.mkv / Nom.de.la.serie.01.hevc / Nom de la serie #01.avi / Nom de la serie #01.webm / Nom de la serie [01].cequetuveux<br>
+- Nom de la serie `S01E01`.mp4
+- Nom de la serie `01.`mkv / Nom.de.la.serie`.01.`hevc / Nom de la serie `#01.`avi / Nom de la serie -` 01 `- BDRip 916p FLAC.webm / Nom de la serie `[01]`[TV 460p 69fps].cequetuveux<br>
 Il est important d'avoir un nom qu'il fasse une lettre ou plusieurs mots pour que ça fonctionne.<br>
 ##### `01.mp4` on fait un petit effort de nommage svp<br>
 #### Si le numéro est entre parenthèse il ne sera pas pris en compte : `Nom de la serie (01).mkv` => pas bon<br>
-Il faudra aussi que tout les fichiers utilisé porte le même nom, à l'exception du numéro qui change, un warning sera affiché si ça n'est pas le cas.
+Il faudra aussi que tout les fichiers utilisé porte le même nom, à l'exception du numéro qui change, un warning sera affiché si ça n'est pas le cas.<br>
 N'hésitez pas à nommez différemment chacun des éléments qui constitueront le mkv final.
 
 ### Requirements
