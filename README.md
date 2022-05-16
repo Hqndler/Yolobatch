@@ -15,6 +15,7 @@ It's important to have a name that have at least a letter or several words for i
 Minimal name will be : `#01.mkv`
 ##### `01.mp4` please make a little bit of effort in the naming
 #### If the number is in brackets it will not be taken into account: `Name of the series (01).mkv` => not good
+It will also be necessary that all the files used have the same name, except for the number that changes, a warning will be displayed if it's not the case.<br>
 Don't hesitate to name differently each element that will constitute the final mkv.
 
 ### Requirements
