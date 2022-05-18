@@ -1,6 +1,6 @@
 # Yolobatch
 
-Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et le coller dans le script, il se chargera du reste.
+Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et lacoller dans le script, il se chargera du reste.
 
 ### Requirements
 
@@ -16,7 +16,7 @@ Deux nommages sont pris en compte:
 Il est important d'avoir un nom qu'il fasse une lettre ou plusieurs mots pour que ça fonctionne.<br>
 ##### `01.mp4` on fait un petit effort de nommage svp<br>
 #### Si le numéro est entre parenthèse il ne sera pas pris en compte : `Nom de la serie (01).mkv` => pas bon<br>
-Il faudra aussi que tout les fichiers utilisé porte le même nom et le même chemin, tout du moins le même chemin pour chacunes des sources, à l'exception du numéro qui change, un warning sera affiché si ça n'est pas le cas.<br>
+Il faudra aussi que tout les fichiers utilisé aient le même nom et le même chemin, tout du moins le même chemin pour chacunes des sources, à l'exception du numéro qui change, un warning sera affiché si ça n'est pas le cas.<br>
 N'hésitez pas à nommez différemment chacun des éléments qui constitueront le mkv final.
 
 ### Bible d'un nommage propre
