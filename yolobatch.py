@@ -1,8 +1,9 @@
 import os, re, glob, sys
-from colorama import Fore, Style
+from colorama import Fore, Style, init
 
+init(convert = True)
 s = 1
-CHECK = False
+CHECK, TITLE, CHAPTER = False, False, False
 FONT_MODE = 1
 ALL, L_DONE = list(), list()
 
@@ -76,11 +77,16 @@ def find_all_input(command):
         index = command.find("--title")
         title = command[index + 10 : command.find('^" ', index, track)]
         if len(title) > 0:
+            global TITLE
+            TITLE = True
             ALL.append(title)
     if "--chapter" in command:
         index = command.find("--chapters")
         chapter = command[index + 13 : command.find('^" ', index, track)]
-        ALL.append(chapter)
+        if len(chapter) > 0:
+            global CHAPTER
+            CHAPTER = True
+            ALL.append(chapter)
     return ALL
 
 def number_raw_input(liste):
@@ -101,14 +107,16 @@ def format_mkv(command, inputs):
 
 def add_one(line, num_o, num_n):
     done = [line]
+    path = os.path.dirname(line)
+    linel = line.replace(path, "")
     for i in range(1, len_raw):
         if 'S' in num_o:
             z = num_o[4:]
             num_n = num_o[:4] + (str(int(z) + (i * s)).zfill(len(z)))
         else:
             num_n = num_o[0] + str(int(num_o[1:-1]) + (i*s)).zfill(len(num_o[1:-1])) + num_o[-1]
-        final = line.replace(num_o, num_n)
-        done.append(final)
+        final = linel.replace(num_o, num_n)
+        done.append(path + final)
     return done
 
 def process(liste):
@@ -116,7 +124,11 @@ def process(liste):
     for i in liste:
         tmp = list()
         num, numE = check_regex(i,2)
-        tmp = add_one(i, num, numE)
+        if num != numE:
+            tmp = add_one(i, num, numE)
+        if num == numE:
+            for n in range(0, len_raw):
+                tmp.append(num)
         big.append(tmp)
     return big
 
@@ -129,9 +141,12 @@ def check_regex(name, mode):
             number = previous[4:]
             next = previous[:4] + str(int(number) + (1*s)).zfill(len(number))
         if not season:
-            print(Fore.RED + f"The file {name} is not named correctly.")
-            print(Style.RESET_ALL)
-            sys.exit()
+            if TITLE and (name in ALL[len(ALL)-1] or name in ALL[len(ALL)-2]):
+                return name, name
+            else:
+                print(Fore.RED + f"The file {name} is not named correctly.")
+                print(Style.RESET_ALL)
+                sys.exit()
     if regular:
         previous = regular[0]
         next = previous[0] + str(int(previous[1:-1]) + (1*s)).zfill(len(previous[1:-1])) + previous[-1]
@@ -145,6 +160,11 @@ def exist(gigalist):
     nope = list()
     less = gigalist.copy()
     less.pop(0)
+    if TITLE and CHAPTER:
+        less.pop(len(gigalist)-3)
+    if TITLE and not CHAPTER:
+        less.pop(len(gigalist)-2)
+
     for liste in less:
         for i in liste:
             i = i.replace('^', '')
@@ -168,7 +188,7 @@ def write(liste, fo, font):
     if fo == 0:
         [f.write(i + "\n") for i in liste]
     else:
-        for i,j in zip(list,font):
+        for i,j in zip(liste,font):
             line = i + j
             f.write(line + "\n")
     f.close
@@ -196,5 +216,6 @@ if __name__ == "__main__" :
     else:
         print(Fore.RED + f"Could'nt find the raw used for {ALL[1]}")
         print(Style.RESET_ALL)
-    input(Fore.GREEN + "Done")
+    print(Fore.GREEN + "Done")
+    input()
     print(Style.RESET_ALL)
