@@ -1,10 +1,10 @@
 # Yolobatch
 
-Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et lacoller dans le script, il se chargera du reste.
+Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et la coller dans le script, il se chargera du reste.
 
 ### Requirements
 
-Python 3.4+
+Python 3.6+
 `pip install colorama`
 
 ### Comment l'utiliser ?
