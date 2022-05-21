@@ -133,6 +133,7 @@ def process(liste):
     return big
 
 def check_regex(name, mode):
+    name = name.replace(os.path.dirname(name), '')
     regular = re.findall("[\s#._\[]\d+[\s._\]]", name)
     if not regular:
         season = re.findall("\w\d\d\w\d+", name)
@@ -203,7 +204,9 @@ if __name__ == "__main__" :
             f = 0
     except:
         f = 0
-    mkv = input("Paste your MkvToolNix Command Here:\n\n")
+    warn = input("Be sure to have the command line copied. PRESS ENTER TO CONTINUE.")
+    if warn == "":
+        mkv = pyperclip.paste()
     output = find_output(mkv)
     mkv_in = mkv.replace(output, "{}", 1)
     mkv_ready = format_mkv(mkv_in, find_all_input(mkv_in))
