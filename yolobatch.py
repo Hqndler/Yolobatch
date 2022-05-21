@@ -1,4 +1,4 @@
-import os, re, glob, sys
+import os, re, glob, sys, pyperclip
 from colorama import Fore, Style, init
 
 init(convert = True)
