@@ -5,7 +5,7 @@ Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et la co
 ### Requirements
 
 Python 3.6+
-`pip install colorama`
+`pip install colorama pyperclip`
 
 ### Comment l'utiliser ?
 
