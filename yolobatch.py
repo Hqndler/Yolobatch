@@ -134,7 +134,7 @@ def process(liste):
 
 def check_regex(name, mode):
     name = name.replace(os.path.dirname(name), '')
-    regular = re.findall("[\s#._\[]\d+[\s._\]]", name)
+    regular = re.findall("[\s#._\[]\d\d+[\s._\]]", name)
     if not regular:
         season = re.findall("\w\d\d\w\d+", name)
         if season:
