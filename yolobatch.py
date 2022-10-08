@@ -36,9 +36,9 @@ def collect_font():
 
 def write_fonts(list):
     list_line = []
-    standard_ttf = ' --attachment-name {} --attachment-mime-type application/x-truetype-font --attach-file ^"{}^"'
-    standard_otf = ' --attachment-name {} --attachment-mime-type application/vnd.ms-opentype --attach-file ^"{}^"'
-    standard_ttc = ' --attachment-name {} --attachment-mime-type font/collection --attach-file ^"{}^"'
+    standard_ttf = ' --attachment-name ^"{}^" --attachment-mime-type application/x-truetype-font --attach-file ^"{}^"'
+    standard_otf = ' --attachment-name ^"{}^" --attachment-mime-type application/vnd.ms-opentype --attach-file ^"{}^"'
+    standard_ttc = ' --attachment-name ^"{}^" --attachment-mime-type font/collection --attach-file ^"{}^"'
     for fonts in list:
         line = ""
         for font in fonts:
