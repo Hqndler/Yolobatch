@@ -4,12 +4,12 @@
 
 Will create the .bat for you. Copy the command line MkvToolNix and paste it in the script, it will do the rest.
 
-### Requirements
+## Requirements
 
 Python 3.6+
 `pip install colorama pyperclip`
 
-### How yo use it ?
+## How yo use it ?
 
 Launch the script in the terminal and follow the step(s). Only the command line is needed, not the json version.<br><br>
 The script is name based, it's important to name the file(s) well.<br>
@@ -27,11 +27,11 @@ The structure "SXXEXX" is the base line.<br>
 
 Clic on the links to check the regex if you're not sure.<br>
 
-### The title exception
+## The title exception
 The title name for the mkv can be change by the script if it follows the Relative regex for the first part, you don't need to have a closing character for the title.<br>
 So the name can be `Episode 01`, without the closing space character.
 
-### Add fonts with -f argument
+## Add fonts with -f argument
 
 You can launch the script with "-f" (`python yolobatch.py -f`) in argument to open a special menu.<br>
 You need to have as many folder as raw used for this part to work. Each folder will have fonts that are used in associated ASS file.<br>
@@ -39,4 +39,4 @@ You can generate those folders by manualy extracting every single fonts used wit
 Should look like [this](https://github.com/Hqndler/AssFontCollector/blob/main/Output%20proof%20for%20ALL_IN_ONE%20False.png).<br>
 You just need to paste the folder where those sub folder are. This will help you to mux the exact fonts for each mkv and not have unused fonts in them.
 
-## You can now leave a star to this repo ;)
+### You can now leave a star to this repo ;)
