@@ -16,7 +16,7 @@ The script is name based, it's important to name the file(s) well.<br>
 Multiple regex are used to achieve that:<br>
 1. [Relative](https://regex101.com/r/Eawjea/1) -> `Something 01 Videos Propreties.extension`<br>
 The regex accept the folling characters between the number : `space`, "\[" for opening and "]" for closing, "\_" (underscore), "." (dot) and start with "#"<br>
-The number will be at least a two digits number (01 to 09 include).<br>
+The number will be at least a two digits number (01 to 09 included).<br>
 The goal is to not have to rename the file to fit the regex.<br>
 
 Some examples : `Something #01 someting.extension`, `Something - [1337][something not new].old`, `Somethin_01_something.avi` or `Something.01.something.mp4`<br>
