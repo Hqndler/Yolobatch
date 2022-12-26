@@ -7,17 +7,42 @@ Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et la co
 Python 3.6+
 `pip install colorama pyperclip`
 
+### Comportement
+
+Lors d'un batch, le premier épisode servira d'exemple pour tout les autres, ils auront tous les même propriétés. Si la piste 2 est mise en défaut alors toutes les autres piste 2 le seront aussi.
+
 ### Comment l'utiliser ?
 
-Le script se base sur le nommage, sur les noms des fichiers, il est donc important de ne pas les nommer n'importe comment. <br>
-Il faudra aussi que tout les fichiers utilisé aient le même nom et le même chemin (tout du moins le même chemin pour chacunes des sources), à l'exception du numéro qui change, un warning sera affiché si ça n'est pas le cas.<br>
-Deux nommages sont pris en compte: 
-- Nom de la serie `S01E01`.mp4
-- Nom de la serie `01.`mkv / Nom.de.la.serie`.01.`hevc / Nom de la serie `#01.`avi / Nom de la serie -` 01 `- BDRip 916p FLAC.webm / Nom de la serie `[01]`[TV 460p 69fps].cequetuveux<br>
-Il est important d'avoir un nom qu'il fasse une lettre ou plusieurs mots pour que ça fonctionne.<br>
-##### `01.mp4` on fait un petit effort de nommage svp<br>
-#### Si le numéro est entre parenthèse il ne sera pas pris en compte : `Nom de la serie (01).mkv` => pas bon<br>
-N'hésitez pas à nommez différemment chacun des éléments qui constitueront le mkv final.
+Lancer le script dans un terminal et suivre les instructions. Seulement la ligne de commande est nécessaire, pas le JSON.<br>
+>`python yolobatch.py`<br>
+
+Le script est basé sur le nommage, il est donc important de bien nommer tout ses fichiers. Un message d'erreur sera affiché si mal nommé.<br>
+Plusieurs regex sont utilisées :
+1. [Relatif](https://regex101.com/r/Eawjea/1) -> `Something 01 Videos Propreties.extension`<br>
+La regex accepte les caractères suivant : `espace`, "\[" pour l'ouverture et "\]" pour la fermeture, '\_' (underscore), '.' (point) et '#' juste avant le numéro.<br>
+Le numéro doit faire minimum 2 chiffres (01 à 09 compris).<br>
+Le but est de ne pas avoir à renommer le fichier.<br>
+
+Quelques exemples : `Something #01 someting.extension`, `Something - [1337][something not new].old`, `Somethin_01_something.avi` or `Something.01.something.mp4`<br>
+
+2. [Saison](https://regex101.com/r/Eawjea/3) -> `Someting S01E01 Videos Propreties.extension`<br>
+La regex commence au 'S' et termine au dernier chiffre du numéro de l'épisode.<br>
+La regex statifait la structure suivante "SXXEXX" (le numéro de l'épisode peut faire plus que deux chiffres).<br>
+
+Cliquez sur les liens pour vérifier les regex.
+
+### L'exception du titre
+
+Le titre du mkv peut être changé avec le script s'il contient un numéro suivant la regex "Relatif", à l'exception qu'il n'y a pas besoin de caractères de fermeture.<br>
+Un nom correct ressemble à ça : `Episode 01` (sans de caractère après le 1).
+
+### Ajouter des polices avec l'argument -f
+
+Le script peut être lancer avec l'argument -f pour ouvrir un menu spécial.<br>
+Pour que ça fonctionne, il a besoin d'autant de dossier qu'il y a d'épisode. Chacun des fichiers devra contenir des polices, utilisées dans l'ass du dit épisode.<br>
+Ces dossiers peuvent être créer et remplis soit en le faisant à la main, soit en utilisant mon autre script dispo [ici](https://github.com/Hqndler/AssFontCollector)<br>
+Ça devrait ressembler à [ça](https://github.com/Hqndler/AssFontCollector/blob/main/Output%20proof%20for%20ALL_IN_ONE%20False.png).<br>
+Plus qu'à coller le chemin du dossier contenant tout ces dossiers (eux même contenant les polices). Comment ça plus de polices muxée inutilement.
 
 ### Bible d'un nommage propre
 Liste non exhaustive des éléments importants à prendre en compte lors du nommage, ceci n'est que mon avis :
