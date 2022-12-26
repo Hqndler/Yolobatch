@@ -1,6 +1,6 @@
 # Yolobatch
 
-Créera les .bat à votre place. Copier la ligne de commande MkvToolNix et la coller dans le script, il se chargera du reste.
+Permet de créer les .bat à votre place. Copier la ligne de commande MkvToolNix et la coller dans le script, il se chargera du reste.
 
 ### Requirements
 
@@ -38,7 +38,7 @@ Un nom correct ressemble à ça : `Episode 01` (sans de caractère après le 1).
 
 ### Ajouter des polices avec l'argument -f
 
-Le script peut être lancer avec l'argument -f pour ouvrir un menu spécial.<br>
+Le script peut être lancer avec l'argument -f pour ouvrir un menu spécial. `python yolobatch.py -f`<br>
 Pour que ça fonctionne, il a besoin d'autant de dossier qu'il y a d'épisode. Chacun des fichiers devra contenir des polices, utilisées dans l'ass du dit épisode.<br>
 Ces dossiers peuvent être créer et remplis soit en le faisant à la main, soit en utilisant mon autre script dispo [ici](https://github.com/Hqndler/AssFontCollector)<br>
 Ça devrait ressembler à [ça](https://github.com/Hqndler/AssFontCollector/blob/main/Output%20proof%20for%20ALL_IN_ONE%20False.png).<br>
