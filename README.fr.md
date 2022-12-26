@@ -2,16 +2,16 @@
 
 Permet de créer les .bat à votre place. Copier la ligne de commande MkvToolNix et la coller dans le script, il se chargera du reste.
 
-### Requirements
+## Requirements
 
 Python 3.6+
 `pip install colorama pyperclip`
 
-### Comportement
+## Comportement
 
 Lors d'un batch, le premier épisode servira d'exemple pour tout les autres, ils auront tous les même propriétés. Si la piste 2 est mise en défaut alors toutes les autres piste 2 le seront aussi.
 
-### Comment l'utiliser ?
+## Comment l'utiliser ?
 
 Lancer le script dans un terminal et suivre les instructions. Seulement la ligne de commande est nécessaire, pas le JSON.<br>
 >`python yolobatch.py`<br>
@@ -31,7 +31,7 @@ La regex statifait la structure suivante "SXXEXX" (le numéro de l'épisode peut
 
 Cliquez sur les liens pour vérifier les regex.
 
-### L'exception du titre
+## L'exception du titre
 
 Le titre du mkv peut être changé avec le script s'il contient un numéro suivant la regex "Relatif", à l'exception qu'il n'y a pas besoin de caractères de fermeture.<br>
 Un nom correct ressemble à ça : `Episode 01` (sans de caractère après le 1).
@@ -44,10 +44,12 @@ Ces dossiers peuvent être créer et remplis soit en le faisant à la main, soit
 Ça devrait ressembler à [ça](https://github.com/Hqndler/AssFontCollector/blob/main/Output%20proof%20for%20ALL_IN_ONE%20False.png).<br>
 Plus qu'à coller le chemin du dossier contenant tout ces dossiers (eux même contenant les polices). Comment ça plus de polices muxée inutilement.
 
-### Bible d'un nommage propre
+## Bible d'un nommage propre
 Liste non exhaustive des éléments importants à prendre en compte lors du nommage, ceci n'est que mon avis :
 - Donner un nom, pas de 01.mkv, 02.mkv etc on est un minimum précis. <br>
 - Si on décide de mettre des points à la place des espaces on s'y tient pour tout le nom du fichier.<br>
 - Préciser les codecs utilisés est apprécié, importance particulière portée sur le codec vidéo que sur l'audio car ce dernier étant souvent moins problématique.<br>
 - Les dates sont entre parenthèse juste après le nom de la série.<br>
 - Aller du plus important au moins important, VOSTFR / VF > caractéristique vidéo > caractéristique audio.<br>
+
+### Une étoile sur le repo est fortement appréciée. En vous remerciant.
