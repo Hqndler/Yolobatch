@@ -129,10 +129,10 @@ def make(ready: str, humongous: list):
         done.append(make)
     return done
 
-def write_bat(done: list, f: bool, font_list: list):
+def write_bat(done: list, font: bool, font_list: list):
     with open("batch.bat", 'a', encoding="utf-8") as f:
         f.write("chcp 65001 >nul\n")
-        if not f:
+        if not font:
             [f.write(i + '\n') for i in done]
         else:
             for i, j in zip(done, font_list):
