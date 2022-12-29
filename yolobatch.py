@@ -58,7 +58,7 @@ def write_font(array: list) -> list:
 def str_number(file: str, mode: int, typef: str) -> str:
     if typef == "Pass":
         file = file.replace(os.path.dirname(file), '')
-        season: list[str] = re.findall("\w\d\d\w\d+", file)
+        season: list[str] = re.findall("S\d\dE\d+", file)
         if season:
             return season[0][4:] if mode == 1 else season[0]
         regular: list[str] = re.findall("[\s#._\[]\d\d+[\s._\]]", file)
@@ -93,7 +93,7 @@ def count_times(array: list) -> int:
     for i in first_pass:
         if left in i and right in i:
             count += 1
-    print(count)
+    # print(count)
     return count
 
 def format_mkv(command: str, source: list) -> str:
@@ -111,7 +111,7 @@ def exist(humongous: list, source: dict) -> None:
     for array in humongous:
         for i in array:
             if i == source.get("output") or i == source.get("title"):
-                continue
+                break
             i = i.replace('^', '')
             if not os.path.exists(i):
                 nope.append(i)
@@ -226,7 +226,7 @@ def main():
     else:
         print(Fore.RED + f"Could'nt find the raw used for {source['inputs'][0]}" + Style.RESET_ALL)
     print(Fore.GREEN + "Done" + Style.RESET_ALL + Back.RESET)
-    input()
 
+#"C:\Program Files\MKVToolNix\mkvmerge.exe" --ui-language fr --output ^"H:\Prince Of Stride\Prince of Stride Alternative - 01 BD 1080p x264 AAC -Fuceo.mkv^" --no-audio --no-subtitles --no-attachments --language 0:und --track-name ^"0:[SFEO-Raws]^" --display-dimensions 0:1920x1080 ^"^(^" ^"E:\Prince Of Stride᎓ Alternative ^(2016^) [BD 1080p x264 8bit - FLAC 2.0]\Nouveau dossier\[Dekinai] Prince Of Stride᎓ Alternative - 01.mkv^" ^"^)^" --language 0:ja --track-name ^"0:JP AAC 2.0^" ^"^(^" ^"E:\Prince Of Stride᎓ Alternative ^(2016^) [BD 1080p x264 8bit - FLAC 2.0]\Nouveau dossier\[Dekinai] Prince Of Stride᎓ Alternative - 01_Audio01.JPN.m4a^" ^"^)^" --language 0:fr --track-name ^"0:Sub ADN Full^" ^"^(^" ^"D:\Prog Perso\Python\Projet fontcollector\Prince of Stride Alternative - 01.ass^" ^"^)^" --attachment-name Cover.jpg --attachment-mime-type image/jpeg --attach-file ^"H:\Prince Of Stride\Cover.jpg^" --title ^"^" --track-order 0:0,1:0,2:0
 if __name__ == "__main__":
     main()
