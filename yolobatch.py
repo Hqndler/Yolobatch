@@ -227,6 +227,5 @@ def main():
         print(Fore.RED + f"Could'nt find the raw used for {source['inputs'][0]}" + Style.RESET_ALL)
     print(Fore.GREEN + "Done" + Style.RESET_ALL + Back.RESET)
 
-#"C:\Program Files\MKVToolNix\mkvmerge.exe" --ui-language fr --output ^"H:\Prince Of Stride\Prince of Stride Alternative - 01 BD 1080p x264 AAC -Fuceo.mkv^" --no-audio --no-subtitles --no-attachments --language 0:und --track-name ^"0:[SFEO-Raws]^" --display-dimensions 0:1920x1080 ^"^(^" ^"E:\Prince Of Stride᎓ Alternative ^(2016^) [BD 1080p x264 8bit - FLAC 2.0]\Nouveau dossier\[Dekinai] Prince Of Stride᎓ Alternative - 01.mkv^" ^"^)^" --language 0:ja --track-name ^"0:JP AAC 2.0^" ^"^(^" ^"E:\Prince Of Stride᎓ Alternative ^(2016^) [BD 1080p x264 8bit - FLAC 2.0]\Nouveau dossier\[Dekinai] Prince Of Stride᎓ Alternative - 01_Audio01.JPN.m4a^" ^"^)^" --language 0:fr --track-name ^"0:Sub ADN Full^" ^"^(^" ^"D:\Prog Perso\Python\Projet fontcollector\Prince of Stride Alternative - 01.ass^" ^"^)^" --attachment-name Cover.jpg --attachment-mime-type image/jpeg --attach-file ^"H:\Prince Of Stride\Cover.jpg^" --title ^"^" --track-order 0:0,1:0,2:0
 if __name__ == "__main__":
     main()
