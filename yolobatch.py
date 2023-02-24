@@ -55,7 +55,19 @@ def write_font(array: list) -> list:
         list_line.append(line)
     return list_line
 
+def pre_regex(name : str):
+    name = name[name.rfind('\\') + 1:name.rfind('.')]
+    try:
+        int(name)
+        return(True)
+    except ValueError:
+        return(False)
+
 def str_number(file: str, mode: int, typef: str) -> str:
+    
+    if pre_regex(file) == True:
+        return file[file.rfind('\\') + 1:file.rfind('.')]
+    
     if typef == "Pass":
         file = file.replace(os.path.dirname(file), '')
         season: list[str] = re.findall("S\d\dE\d+", file)
@@ -67,6 +79,7 @@ def str_number(file: str, mode: int, typef: str) -> str:
         else:
             print(Fore.RED + f"{file} not named proprely.")
             sys.exit()
+
     if typef == "title":
         int_groups = re.findall("([0-9]+)", file)
         if len(int_groups) != 1:
@@ -93,7 +106,6 @@ def count_times(array: list) -> int:
     for i in first_pass:
         if left in i and right in i:
             count += 1
-    # print(count)
     return count
 
 def format_mkv(command: str, source: list) -> str:
@@ -151,15 +163,17 @@ def get_source(command: str) -> dict:
             source["chapter"] = args[c + 1][1:-1] if "^" in args[c + 1] else args[c + 1]
         if i == "--title" and len(args[c + 1]) != 0 and args[c + 1] != "^^":
             source["title"] = args[c + 1][1:-1] if "^" in args[c + 1] else args[c + 1]
-    # print(source)
     return source
 
 def add_one(file: str, num: str, typef: str) -> list:
     done: list = [file]
     path = os.path.dirname(file)
     line = file.replace(path, "")
+    switch: bool = pre_regex(file)
     for i in range(1, length):
-        if "S" in num:
+        if switch:
+            new_num = (str(int(num) + i).zfill(len(num)))
+        elif "S" in num:
             new_num = num[:4] + (str(int(str_number(line,1, typef)) + i).zfill(len(num) - 4))
         else:
             if typef == "Pass":
