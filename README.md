@@ -13,7 +13,7 @@ Python 3.6+
 
 Do for the first file everything in MkvToolNix, then copy the command line via `Multiplexer -> Show command line` 
 
-and launch the script `py yolobatch.py`. Done !
+and open a terminal and launch the script `py yolobatch.py`. Done !
 
 ## Add fonts with -f argument
 
