@@ -7,42 +7,35 @@ Permet de créer les .bat à votre place. Copier la ligne de commande MkvToolNix
 Python 3.6+
 `pip install colorama pyperclip`
 
-## Comportement
-
-Lors d'un batch, le premier épisode servira d'exemple pour tout les autres, ils auront tous les même propriétés. Si la piste 2 est mise en défaut alors toutes les autres piste 2 le seront aussi.
-
 ## Comment l'utiliser ?
 
-Lancer le script dans un terminal et suivre les instructions. Seulement la ligne de commande est nécessaire, pas le JSON.<br>
+Faire le premier mkv normalement dans MkvToolNix, copier la ligne de commande `Multiplexeur -> Affichier la ligne de commande`, lancer un terminal puis<br>
 >`python yolobatch.py`<br>
 
-Le script est basé sur le nommage, il est donc important de bien nommer tout ses fichiers. Un message d'erreur sera affiché si mal nommé.<br>
-Plusieurs regex sont utilisées :
-1. [Relatif](https://regex101.com/r/Eawjea/1) -> `Something 01 Videos Propreties.extension`<br>
-La regex accepte les caractères suivant : `espace`, "\[" pour l'ouverture et "\]" pour la fermeture, '\_' (underscore), '.' (point) et '#' juste avant le numéro.<br>
-Le numéro doit faire minimum 2 chiffres (01 à 09 compris).<br>
-Le but est de ne pas avoir à renommer le fichier.<br>
-
-Quelques exemples : `Something #01 someting.extension`, `Something - [1337][something not new].old`, `Somethin_01_something.avi` or `Something.01.something.mp4`<br>
-
-2. [Saison](https://regex101.com/r/Eawjea/3) -> `Someting S01E01 Videos Propreties.extension`<br>
-La regex commence au 'S' et termine au dernier chiffre du numéro de l'épisode.<br>
-La regex statifait la structure suivante "SXXEXX" (le numéro de l'épisode peut faire plus que deux chiffres).<br>
-
-Cliquez sur les liens pour vérifier les regex.
-
-## L'exception du titre
-
-Le titre du mkv peut être changé avec le script s'il contient un numéro suivant la regex "Relatif", à l'exception qu'il n'y a pas besoin de caractères de fermeture.<br>
-Un nom correct ressemble à ça : `Episode 01` (sans de caractère après le 1).
+Fini !
 
 ### Ajouter des polices avec l'argument -f
 
-Le script peut être lancer avec l'argument -f pour ouvrir un menu spécial. `python yolobatch.py -f`<br>
-Pour que ça fonctionne, il a besoin d'autant de dossier qu'il y a d'épisode. Chacun des fichiers devra contenir des polices, utilisées dans l'ass du dit épisode.<br>
-Ces dossiers peuvent être créer et remplis soit en le faisant à la main, soit en utilisant mon autre script dispo [ici](https://github.com/Hqndler/AssFontCollector)<br>
-Ça devrait ressembler à [ça](https://github.com/Hqndler/AssFontCollector/blob/main/Output%20proof%20for%20ALL_IN_ONE%20False.png).<br>
-Plus qu'à coller le chemin du dossier contenant tout ces dossiers (eux même contenant les polices). Comment ça plus de polices muxée inutilement.
+`python yolobatch.py -f "<path>"` avec <path> étant le dossier parent contenant tout les dossiers contenant eux même les polices que vous voulez mettre dans votre mkv.<br>
+Il devra y avoir autant de dossier qu'il y a d'épisode. Chacun des dossiers devra contenir des polices, utilisées dans l'ass du dit épisode.<br>
+Ces dossiers peuvent être créer et remplis soit en le faisant à la main grâce à aegisub, soit en utilisant mon autre script dispo [ici](https://github.com/Hqndler/AssFontCollector)<br>
+Ça devrait ressembler à ce que mon autre script créer.<br>
+Comment ça plus de polices muxée inutilement.
+
+### Façon de numéroter supportée
+
+Ce script utilise des regex pour savoir ce qui doit être incrémenté, une petite liste des numérotatio supportée :
+- `S01E01` / `s01e01` pour vérifier la regex c'est [ici](https://regex101.com/r/QEEEZV/1)
+- `<espace>01<espace>`, `[01]`, `_01_`, `.01.`, `#01 ` pour vérifier la regex c'est [ici](https://regex101.com/r/4FQCIN/1)
+- `01x01` (pour saison 01 épisode 01) pour vérifier la regex c'est [ici](https://regex101.com/r/yMGDZP/1)
+
+Les regex sont vérifiée dans cette ordre mais la dernière risque de posée problème. Si votre façon de numéroter ne passe pas les deux premières regex et que la troisième regex est utilisée, si dans votre nom de fichier vous avez mis la résolution sous cette forme `1280x720`, alors vous êtes dans le cas très spécifique où 720 va être incrémenté. Dans le doute, préférez utiliser la première façon de numéroter pour éviter tout problème.
+
+Le nommage "flemmard" est aussi supporté : `01.mkv` est un nom valide de fichier.
+
+Vous pouvez vérifier les regex avec vos noms de fichier en clicant sur le lien.
+
+### Devrait aussi fonctionner sous Linux et MacOS
 
 ## Bible d'un nommage propre
 Liste non exhaustive des éléments importants à prendre en compte lors du nommage, ceci n'est que mon avis :
