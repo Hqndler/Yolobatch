@@ -14,6 +14,10 @@ Faire le premier mkv normalement dans MkvToolNix, copier la ligne de commande `M
 
 Fini !
 
+## Comportement
+
+Le script va récupérer tout les fichiers d'entrée, de sortie, chapitre et titre et va incrementer les numbres contenu dedans. Une bonne numérotation est impérative pour le bon fonctionnement du script.
+
 ### Ajouter des polices avec l'argument -f
 
 `python yolobatch.py -f "<path>"` avec <path> étant le dossier parent contenant tout les dossiers contenant eux même les polices que vous voulez mettre dans votre mkv.<br>
