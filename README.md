@@ -15,6 +15,10 @@ Do for the first file everything in MkvToolNix, then copy the command line via `
 
 and open a terminal and launch the script `py yolobatch.py`. Done !
 
+## Behaviour 
+
+The script will take every _**input**_, _**output**_, _**title**_ and _**chapter**_ name et will try to increment the numbre in the file X times. The naming and the numering is important.
+
 ## Add fonts with -f argument
 
 `python yolobatch.py -f "<path>"` where <path> is a <path> to the **base** folder of *sub* folders containing fonts to be add to the mkv<br>
