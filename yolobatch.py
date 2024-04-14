@@ -1,7 +1,7 @@
-import os, re, pyperclip, sys, copy, platform, locale, ctypes, time
+import os, re, pyperclip, copy, platform, locale, ctypes, time
 from argparse import ArgumentParser
 from shlex import split as sh_split
-from colorama import Fore, Style, init, Back
+from colorama import Fore, Style, init
 from enum import Enum
 from typing import Tuple, List
 
@@ -11,10 +11,10 @@ WARNING = True
 
 init(convert = True)
 
-re_pattern_seasons = "[S|s]\d+[E|e]\d+" # S01E01
-re_pattern_general = "[\s#._\[]\d+[\s._\]]" # _01_, [01], .01., #01 ,  01 , or any mix match of theses examples also works
-re_pattern_shitier = "\d+x\d+" # embrace chaos 01x01
-re_pattern_lazynes = "\d+" # for the one who are to lazy to proprely name file
+re_pattern_seasons = r"[S|s]\d+[E|e]\d+" # S01E01
+re_pattern_general = r"[\s#._\[]\d+[\s._\]]" # _01_, [01], .01., #01 ,  01 , or any mix match of theses examples also works
+re_pattern_shitier = r"\d+x\d+" # embrace chaos 01x01
+re_pattern_lazynes = r"\d+" # for the one who are to lazy to proprely name file
 
 class RegexType(Enum):
     SEASON = 1
@@ -44,6 +44,12 @@ class Source:
             if elem == "inputs":
                 [get_regex_result(os.path.basename(i)) for i in self.source[elem]]
                 continue
+            if elem == "title":
+                try:
+                    get_regex_result(os.path.basename(self.source[elem]))
+                except RegexNameException:
+                    print("Title will not be incremented")
+                continue
             get_regex_result(os.path.basename(self.source[elem]))
 
 class Args:
@@ -51,10 +57,10 @@ class Args:
         self.folder : str = ""
 
     def set_folder(self, path : str):
-        if (os.path.exists(path)):
+        if os.path.exists(path):
             self.folder = path
         else:
-            raise Exception(f"\"{path}\" does not exits")
+            raise FileNotFoundError(path)
 
 def arg_parse() -> Args:
     parser = ArgumentParser(description= f"Yolobatch (v{VERSION})")
@@ -107,9 +113,9 @@ def get_attachments(folder : str) -> List[str]:
         if not os.path.isdir(dir):
             continue
         sub : list[str] = os.listdir(dir)
-        fonts : list[str] = [os.path.join(dir, file) for file in sub 
-                             if file.lower().endswith(".ttf") 
-                             or file.lower().endswith(".otf") 
+        fonts : list[str] = [os.path.join(dir, file) for file in sub
+                             if file.lower().endswith(".ttf")
+                             or file.lower().endswith(".otf")
                              or file.lower().endswith(".ttc")]
         if fonts:
             attachments.append(font_attachment(fonts))
@@ -121,8 +127,7 @@ def get_command() -> str:
         command = pyperclip.paste()
         if "mkvmerge" in command:
             break
-        else:
-            input("It seem's that you have not copied the commande line. Press Enter when you're done.\n")
+        input("It seem's that you have not copied the commande line. Press Enter when you're done.\n")
     return command
 
 def parse_command(command : str) -> Source:
@@ -188,10 +193,8 @@ def get_regex_result(path : str) -> Tuple[str, int]:
         tmp = re.findall(re_pattern_lazynes, path)[0]
         if tmp == path[:path.rfind('.')]:
             return tmp, RegexType.LAZYNESS
-        else:
-            regex_name(path)
-    else:
         regex_name(path)
+    regex_name(path)
 
 def count_times(input_file : str) -> int:
     """
@@ -225,12 +228,19 @@ def write_batch(lines : List[str], args : Args) -> None:
             for line in lines:
                 f.write(line + '\n')
 
-def next_file(path : str, incr : int, check : bool = True) -> str:
+def next_file(path : str, incr : int, check : bool = True, chapter : bool = False) -> str:
     if not incr:
         return path
 
     dir : str = os.path.dirname(path)
     file : str = os.path.basename(path)
+
+    if chapter:
+        try:
+            match, type = get_regex_result(file)
+        except RegexNameException:
+            return file
+
     match, type = get_regex_result(file)
     res : str = ""
     
@@ -241,7 +251,7 @@ def next_file(path : str, incr : int, check : bool = True) -> str:
         res = match[0] + str(int(match[1:-1]) + incr).zfill(len(match) - 2) + match[-1]
 
     elif type == RegexType.SHITTIER:
-        res = match[:match.find('x') + 1] + str(int(match[match.find('x') + 1:] + incr).zfill(len(match) - len(match[:match.find('x') + 1])) + 1)
+        res = match[:match.find('x') + 1] + str(int(match[match.find('x') + 1:]) + incr).zfill(len(match) - len(match[:match.find('x') + 1]))
 
     elif type == RegexType.LAZYNESS:
         res = str(int(match) + incr).zfill(len(match))
@@ -261,7 +271,7 @@ def make_lines(source : Source, model : str, times : int) -> List[str]:
     while remaining:
         line : str = copy.copy(model)
         input_count : int = 0
-        
+
         for order in source.order:
             if order == Order.INPUT and input_count < len(source.source["inputs"]):
                 line = line.replace("{}", next_file(source.source["inputs"][input_count], times - remaining), 1)
@@ -271,7 +281,7 @@ def make_lines(source : Source, model : str, times : int) -> List[str]:
                 line = line.replace("{}", next_file(source.source["output"], times - remaining, False), 1)
 
             if order == Order.TITLE:
-                line = line.replace("{}", next_file(source.source["title"], times - remaining), 1)
+                line = line.replace("{}", next_file(source.source["title"], times - remaining, False, True), 1)
 
             if order == Order.CHAPTER:
                 line = line.replace("{}", next_file(source.source["chapter"], times - remaining), 1)
