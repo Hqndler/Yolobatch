@@ -21,7 +21,7 @@ The script will take every _**input**_, _**output**_, _**title**_ and _**chapter
 
 ## Add fonts with -f argument
 
-`python yolobatch.py -f "<path>"` where <path> is a <path> to the **base** folder of *sub* folders containing fonts to be add to the mkv<br>
+`python yolobatch.py -f "<path>"` where \<path\> is a path to the **base** folder of *sub* folders containing fonts to be add to the mkv<br>
 You need to have as many folder as raw used for this part to work. Each folder will have fonts that are used in associated ASS file.<br>
 You can generate those folders by manualy extracting every single fonts used with aegisub or use my other script [here](https://github.com/Hqndler/AssFontCollector)<br>
 *Should look like what my other script create.*<br>
