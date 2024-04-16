@@ -20,11 +20,11 @@ Le script va récupérer tout les fichiers d'entrée, de sortie, chapitre et tit
 
 ### Ajouter des polices avec l'argument -f
 
-`python yolobatch.py -f "<path>"` avec <path> étant le dossier parent contenant tout les dossiers contenant eux même les polices que vous voulez mettre dans votre mkv.<br>
+`python yolobatch.py -f "<path>"` avec \<path\> étant le dossier parent contenant tout les dossiers contenant eux même les polices que vous voulez mettre dans votre mkv.<br>
 Il devra y avoir autant de dossier qu'il y a d'épisode. Chacun des dossiers devra contenir des polices, utilisées dans l'ass du dit épisode.<br>
 Ces dossiers peuvent être créer et remplis soit en le faisant à la main grâce à aegisub, soit en utilisant mon autre script dispo [ici](https://github.com/Hqndler/AssFontCollector)<br>
 Ça devrait ressembler à ce que mon autre script créer.<br>
-Comment ça plus de polices muxée inutilement.
+Comme ça plus de polices muxée inutilement.
 
 ### Façon de numéroter supportée
 
